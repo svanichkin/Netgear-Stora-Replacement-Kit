@@ -41,3 +41,13 @@ This kit allows Netgear Stora MS2000 users to upgrade and modernize their device
 ### Prototype V.1
 
 ![Main plate V.1](https://raw.githubusercontent.com/svanichkin/Netgear-Stora-Replacement-Kit/refs/heads/main/Photos/Prototype_v.1/5.prototype_plate_v.1.heic)
+
+## Prototype in box with RPI
+
+![Closed in box](https://raw.githubusercontent.com/svanichkin/Netgear-Stora-Replacement-Kit/refs/heads/main/Photos/Prototype_v.1/1.prototype_nas_v.1.jpg)
+
+![Closed in box](https://raw.githubusercontent.com/svanichkin/Netgear-Stora-Replacement-Kit/refs/heads/main/Photos/Prototype_v.1/2.prototype_nas_v.1.jpg)
+
+![Opened box](https://raw.githubusercontent.com/svanichkin/Netgear-Stora-Replacement-Kit/refs/heads/main/Photos/Prototype_v.1/3.prototype_nas_v.1.jpg)
+
+![Opened box](https://raw.githubusercontent.com/svanichkin/Netgear-Stora-Replacement-Kit/refs/heads/main/Photos/Prototype_v.1/4.prototype_nas_v.1.jpg)
