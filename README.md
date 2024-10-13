@@ -72,8 +72,8 @@ This kit allows Netgear Stora MS2000 users to upgrade and modernize their device
 ### On → Pressed the power button (longer than two seconds)
 - [x] ON → OFF controller, power off GPIO, LED, FAN
 - [x] 5V → 0V at GPIO input
-- [x] ON → OFF power LED indicator
-- [x] 5V → 0V FAN
+- [ ] ON → OFF power LED indicator
+- [ ] 5V → 0V FAN
 - [x] ON → OFF controller, power off SATA, pinout
 - [x] 3.3V → 0V at pinout output
 - [x] 5V → 0V at pinout output
@@ -102,8 +102,8 @@ This kit allows Netgear Stora MS2000 users to upgrade and modernize their device
 - [x] RPI disabled, no ping I2C → controller watchdog timer expired
 - [x] controller wait 180 seconds → GPIO, LED, FAN power off script
 - [x] 5V → 0V at GPIO input
-- [x] ON → OFF power LED indicator
-- [x] 5V → 0V FAN
+- [ ] ON → OFF power LED indicator
+- [ ] 5V → 0V FAN
 - [x] controller wait 180 seconds → SATA power off script, pinout
 - [x] 3.3V → 0V at pinout output
 - [x] 5V → 0V at pinout output
@@ -119,14 +119,14 @@ This kit allows Netgear Stora MS2000 users to upgrade and modernize their device
 - [x] Reboot
 
 ### Reboot → Pressed the Reset button
-- [x] 5V → 0V at GPIO input
+- [ ] 5V → 0V at GPIO input
 
 ### Reboot → Released the Reset button
-- [x] 0V → 5V at GPIO input
+- [ ] 0V → 5V at GPIO input
 
 ### Operation
-- [x] SATA 1 HDD connected → LED indicator 1 blinks during read/write
-- [x] SATA 2 HDD connected → LED indicator 2 blinks during read/write
-- [x] USB front, plug in flash drive → Flash drive visible in RPI
+- [ ] SATA 1 HDD connected → LED indicator 1 blinks during read/write
+- [ ] SATA 2 HDD connected → LED indicator 2 blinks during read/write
+- [ ] USB front, plug in flash drive → Flash drive visible in RPI
 - [x] Fan RPM reading
 - [x] Fan speed control
