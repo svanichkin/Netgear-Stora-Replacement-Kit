@@ -38,6 +38,17 @@ This project is designed for Netgear Stora MS2000 owners to allow them to use th
 
 This kit allows Netgear Stora MS2000 users to upgrade and modernize their device, providing the possibility of flexible configuration and supporting modern computing power.
 
+## Fan control
+
+Our device uses GPIO 18 to control the fan speed. This script does it based on the device's temperature. Here is the instruction for installing this script: 
+https://github.com/svanichkin/Netgear-Stora-Replacement-Kit/blob/main/fancontrol/README.md
+
+## Power off button
+
+Our board contains components and firmware from the Piwatcher project (https://www.omzlo.com/articles/the-piwatcher), which allows for power management. If the power button is held for more than two seconds, Piwatcher controller will forcefully cut the power. If we need a soft shutdown with a brief press of the power button, we will need to add a script that reads the button press. https://github.com/svanichkin/Netgear-Stora-Replacement-Kit/blob/main/piwatcher/README.md
+
+## 
+
 ### Prototype V.1
 
 ![Main plate V.1](https://raw.githubusercontent.com/svanichkin/Netgear-Stora-Replacement-Kit/refs/heads/main/Photos/Prototype_v.1/5.prototype_plate_v.1.heic)
@@ -52,16 +63,6 @@ This kit allows Netgear Stora MS2000 users to upgrade and modernize their device
 
 ![Opened box](https://raw.githubusercontent.com/svanichkin/Netgear-Stora-Replacement-Kit/refs/heads/main/Photos/Prototype_v.1/4.prototype_nas_v.1.jpg)
 
-## Fan control
-
-Our device uses GPIO 18 to control the fan speed. This script does it based on the device's temperature. Here is the instruction for installing this script: 
-https://github.com/svanichkin/Netgear-Stora-Replacement-Kit/blob/main/fancontrol/README.md
-
-## Power off button
-
-Our board contains components and firmware from the Piwatcher project (https://www.omzlo.com/articles/the-piwatcher), which allows for power management. If the power button is held for more than two seconds, Piwatcher controller will forcefully cut the power. If we need a soft shutdown with a brief press of the power button, we will need to add a script that reads the button press. https://github.com/svanichkin/Netgear-Stora-Replacement-Kit/blob/main/piwatcher/README.md
-
-## 
 
 ## Testing
 
