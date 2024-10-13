@@ -47,7 +47,10 @@ https://github.com/svanichkin/Netgear-Stora-Replacement-Kit/blob/main/fancontrol
 
 Our board contains components and firmware from the Piwatcher project (https://www.omzlo.com/articles/the-piwatcher), which allows for power management. If the power button is held for more than two seconds, Piwatcher controller will forcefully cut the power. If we need a soft shutdown with a brief press of the power button, we will need to add a script that reads the button press. https://github.com/svanichkin/Netgear-Stora-Replacement-Kit/blob/main/piwatcher/README.md
 
-## 
+## Disk auto format
+
+When we insert a disk, the system should recognize it. If it is a new disk, it needs to be prepared.
+https://github.com/svanichkin/Netgear-Stora-Replacement-Kit/blob/main/disk/README.md
 
 ### Prototype V.1
 
