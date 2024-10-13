@@ -1,0 +1,13 @@
+[Unit]
+Description=PiWatcher Service
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+ExecStart=/home/piwatcher/piwatcher.sh
+
+[Install]
+WantedBy=multi-user.target
