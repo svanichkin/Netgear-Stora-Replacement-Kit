@@ -51,3 +51,82 @@ This kit allows Netgear Stora MS2000 users to upgrade and modernize their device
 ![Opened box](https://raw.githubusercontent.com/svanichkin/Netgear-Stora-Replacement-Kit/refs/heads/main/Photos/Prototype_v.1/3.prototype_nas_v.1.jpg)
 
 ![Opened box](https://raw.githubusercontent.com/svanichkin/Netgear-Stora-Replacement-Kit/refs/heads/main/Photos/Prototype_v.1/4.prototype_nas_v.1.jpg)
+
+## Testing
+
+### Off → Plugged into the outlet OR restart after power loss
+- [x] OFF → ON controller, power on GPIO, LED, FAN
+- [x] 0V → 5V at GPIO input
+- [x] OFF → ON power LED indicator
+- [x] 0V → 5V FAN
+- [x] OFF → ON controller, power on SATA, pinout
+- [x] 0V → 3.3V at pinout output
+- [x] 0V → 5V at pinout output
+- [x] 0V → 12V at pinout output
+- [x] 0V → 3.3V data
+- [x] 0V → 5V SATA
+- [x] 0V → 12V SATA
+- [x] RPI I2C send watch 180 → controller set watchdog timer and wait for ping
+- [x] RPI I2C send status (ping) while 15 sleep → controller reset watchdog ping timer
+
+### On → Pressed the power button (longer than two seconds)
+- [x] ON → OFF controller, power off GPIO, LED, FAN
+- [x] 5V → 0V at GPIO input
+- [x] ON → OFF power LED indicator
+- [x] 5V → 0V FAN
+- [x] ON → OFF controller, power off SATA, pinout
+- [x] 3.3V → 0V at pinout output
+- [x] 5V → 0V at pinout output
+- [x] 12V → 0V at pinout output
+- [x] 0V → 3.3V SATA
+- [x] 0V → 5V SATA
+- [x] 0V → 12V SATA
+
+### Off → Pressed the power button (briefly)
+- [x] OFF → ON controller, power on GPIO, LED, FAN
+- [x] 0V → 5V at GPIO input
+- [x] OFF → ON power LED indicator
+- [x] 0V → 5V FAN
+- [x] OFF → ON controller, power on SATA, pinout
+- [x] 0V → 3.3V at pinout output
+- [x] 0V → 5V at pinout output
+- [x] 0V → 12V at pinout output
+- [x] 0V → 3.3V SATA
+- [x] 0V → 5V SATA
+- [x] 0V → 12V SATA
+- [x] RPI I2C send watch 180 → controller set watchdog timer and wait for ping
+- [x] RPI I2C send status (ping) while 15 sleep → controller reset watchdog ping timer
+
+### On → Pressed the power button (briefly)
+- [x] controller I2C send button_pressed → RPI get button_pressed start shutdown script
+- [x] RPI disabled, no ping I2C → controller watchdog timer expired
+- [x] controller wait 180 seconds → GPIO, LED, FAN power off script
+- [x] 5V → 0V at GPIO input
+- [x] ON → OFF power LED indicator
+- [x] 5V → 0V FAN
+- [x] controller wait 180 seconds → SATA power off script, pinout
+- [x] 3.3V → 0V at pinout output
+- [x] 5V → 0V at pinout output
+- [x] 12V → 0V at pinout output
+- [x] 0V → 3.3V SATA
+- [x] 0V → 5V SATA
+- [x] 0V → 12V SATA
+
+### On → Power loss, then restored
+- [x] Auto power on
+
+### On → Raspberry Pi froze
+- [x] Reboot
+
+### Reboot → Pressed the Reset button
+- [x] 5V → 0V at GPIO input
+
+### Reboot → Released the Reset button
+- [x] 0V → 5V at GPIO input
+
+### Operation
+- [x] SATA 1 HDD connected → LED indicator 1 blinks during read/write
+- [x] SATA 2 HDD connected → LED indicator 2 blinks during read/write
+- [x] USB front, plug in flash drive → Flash drive visible in RPI
+- [x] Fan RPM reading
+- [x] Fan speed control
