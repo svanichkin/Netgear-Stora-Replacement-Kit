@@ -5,7 +5,7 @@ The fan is connected to GPIO 18 (PWM) and GPIO 24 (RPM), allowing you to both re
 First, we need to install some packages to make this work.
 
 ```
-sudo apt install python3-gpiozero
+sudo apt install python3-rpi.gpio
 wget https://github.com/svanichkin/Netgear-Stora-Replacement-Kit/tree/main/fancontrol/fancontrol.py
 sudo mv fancontrol.py /usr/local/bin/fancontrol.py
 sudo chmod +x /usr/local/bin/fancontrol.py
