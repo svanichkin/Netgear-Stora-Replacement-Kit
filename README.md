@@ -52,6 +52,17 @@ This kit allows Netgear Stora MS2000 users to upgrade and modernize their device
 
 ![Opened box](https://raw.githubusercontent.com/svanichkin/Netgear-Stora-Replacement-Kit/refs/heads/main/Photos/Prototype_v.1/4.prototype_nas_v.1.jpg)
 
+## Fan control
+
+Our device uses GPIO 18 to control the fan speed. This script does it based on the device's temperature. Here is the instruction for installing this script: 
+https://github.com/svanichkin/Netgear-Stora-Replacement-Kit/fancontrol/README.md
+
+## Wachdog and power off button
+
+Our board contains components and firmware from the Piwatcher project (https://www.omzlo.com/articles/the-piwatcher), which allows for power management. If the power button is held for more than two seconds, Piwatcher controller will forcefully cut the power. If we need a soft shutdown with a brief press of the power button, we will need to add a script that reads the button press. https://github.com/svanichkin/Netgear-Stora-Replacement-Kit/piwatcher/README.md
+
+## 
+
 ## Testing
 
 ### Off → Plugged into the outlet OR restart after power loss
