@@ -7,17 +7,17 @@ First, we will install the original binary file for PiWatcher, then we will conn
 ```
 wget -N http://omzlo.com/downloads/aarch64/piwatcher
 sudo chmod a+x piwatcher
-sudo mv piwatcher /usr/local/bin/
-wget https://github.com/svanichkin/Netgear-Stora-Replacement-Kit/tree/main/piwatcher/piwatcher.sh
+sudo mv -f piwatcher /usr/local/bin/
+wget https://raw.githubusercontent.com/svanichkin/Netgear-Stora-Replacement-Kit/refs/heads/main/piwatcher/piwatcher.sh
 sudo chmod a+x piwatcher.sh
 mkdir /home/piwatcher/
-sudo mv piwatcher.sh /home/piwatcher/
+sudo mv -f piwatcher.sh /home/piwatcher/
 ```
 
 Now let's add the script to autostart using systemd
 ```
 wget https://raw.githubusercontent.com/svanichkin/Netgear-Stora-Replacement-Kit/refs/heads/main/piwatcher/piwatcher.service
-sudo mv piwatcher.service /etc/systemd/system/
+sudo mv -f piwatcher.service /etc/systemd/system/
 sudo systemctl enable piwatcher.service
 sudo systemctl start piwatcher.service
 ```
