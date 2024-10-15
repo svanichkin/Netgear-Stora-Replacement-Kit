@@ -14,7 +14,7 @@ sudo chmod a+x /usr/local/bin/fancontrol.py
 
 Now let's add the script to autostart using systemd
 ```
-wget https://github.com/svanichkin/Netgear-Stora-Replacement-Kit/tree/main/fancontrol/fancontrol.service
+wget https://raw.githubusercontent.com/svanichkin/Netgear-Stora-Replacement-Kit/refs/heads/main/fancontrol/fancontrol.service
 sudo mv fancontrol.service /etc/systemd/system/
 sudo systemctl enable fancontrol.service
 sudo systemctl start fancontrol.service
