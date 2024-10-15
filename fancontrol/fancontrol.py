@@ -1,20 +1,43 @@
 #!/usr/bin/env python3
 
-import RPi.GPIO as GPIO
+import lgpio
 import time
+import subprocess
+import re
 
-GPIO_PIN = 18
-PWM_FREQUENCY = 25000
-
+TARGET_GPIO = 18
+PWM_FREQUENCY = 10000
 OFF_THRESHOLD = 40
 FULL_SPEED_THRESHOLD = 65
 SAMPLE_TIME = 5
 SAMPLE_INTERVAL = 1
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(GPIO_PIN, GPIO.OUT)
+def find_gpiochip_for_gpio(gpio_number):
+    try:
+        gpioinfo_output = subprocess.check_output(["gpioinfo"]).decode().strip().splitlines()
 
-pwm = GPIO.PWM(GPIO_PIN, PWM_FREQUENCY)
+        for line in gpioinfo_output:
+            match = re.match(r"gpiochip(\d+) - \d+ lines:", line)
+            if match:
+                gpiochip_number = match.group(1)
+                for line in gpioinfo_output[gpioinfo_output.index(line) + 1:]:
+                    if f"GPIO{gpio_number}" in line:
+                        return gpiochip_number
+                continue
+
+        print(f"GPIO {gpio_number} not found.")
+        return None
+
+    except subprocess.CalledProcessError as e:
+        print("Error of gpioinfo:", e)
+        return None
+
+gpiochip = find_gpiochip_for_gpio(TARGET_GPIO)
+if gpiochip is None:
+    print("Not found gpiochip for GPIO", TARGET_GPIO)
+    exit(1)
+
+h = lgpio.gpiochip_open(int(gpiochip))
 
 def get_temp():
     with open('/sys/class/thermal/thermal_zone0/temp') as f:
@@ -23,9 +46,9 @@ def get_temp():
 
 def set_fan_speed(speed):
     if speed <= 0:
-        pwm.stop()
+        lgpio.tx_pwm(h, TARGET_GPIO, PWM_FREQUENCY, 0)
     else:
-        pwm.start(min(speed, 1)  * 100)
+        lgpio.tx_pwm(h, TARGET_GPIO, PWM_FREQUENCY, min(speed * 100, 100))
 
 try:
     temperatures = []
@@ -44,5 +67,4 @@ try:
 except KeyboardInterrupt:
     pass
 finally:
-    pwm.stop()
-    GPIO.cleanup()
+    lgpio.gpiochip_close(h)
