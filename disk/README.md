@@ -5,7 +5,7 @@ The logic of this script is simple: we save logs in /var/log/check_disk.log and 
 ```
 sudo apt install btrfs-progs
 sudo apt install smartmontools
-wget https://github.com/svanichkin/Netgear-Stora-Replacement-Kit/tree/main/disk/check_disk.sh
+wget https://raw.githubusercontent.com/svanichkin/Netgear-Stora-Replacement-Kit/refs/heads/main/disk/check_disk.sh
 mv check_disk.sh /usr/local/bin/
 chmod +x /usr/local/bin/check_disk.sh
 ```
