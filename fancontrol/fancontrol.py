@@ -25,11 +25,9 @@ def find_gpiochip_for_gpio(gpio_number):
                         return gpiochip_number
                 continue
 
-        print(f"GPIO {gpio_number} not found.")
         return None
 
-    except subprocess.CalledProcessError as e:
-        print("Error of gpioinfo:", e)
+    except subprocess.CalledProcessError:
         return None
 
 gpiochip = find_gpiochip_for_gpio(TARGET_GPIO)
