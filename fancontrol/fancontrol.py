@@ -12,22 +12,36 @@ FULL_SPEED_THRESHOLD = 65
 SAMPLE_TIME = 5
 SAMPLE_INTERVAL = 1
 
-def find_gpiochip_for_gpio(gpio_number):
+def get_all_gpiochips():
     try:
-        gpioinfo_output = subprocess.check_output(["gpioinfo"]).decode().strip().splitlines()
-
-        for line in gpioinfo_output:
-            match = re.match(r"gpiochip(\d+) - \d+ lines:", line)
+        gpiodetect_output = subprocess.check_output(["gpiodetect"]).decode().strip().splitlines()
+        gpiochips = []
+        for line in gpiodetect_output:
+            match = re.match(r"gpiochip(\d+)", line)
             if match:
-                gpiochip_number = match.group(1)
-                for line in gpioinfo_output[gpioinfo_output.index(line) + 1:]:
-                    if f"GPIO{gpio_number}" in line:
-                        return gpiochip_number
-                continue
+                gpiochips.append(match.group(1))
+        return gpiochips
+    except subprocess.CalledProcessError as e:
+        print("Error executing gpiodetect:", e)
+        return []
 
+def find_gpiochip_for_gpio(gpio_number):
+    gpiochips = get_all_gpiochips()
+    if not gpiochips:
+        print("No gpiochips found.")
+        return None
+    try:
+        for chip in gpiochips:
+            gpioinfo_output = subprocess.check_output(["gpioinfo", f"gpiochip{chip}"]).decode().strip().splitlines()
+            for line in gpioinfo_output:
+                if f"GPIO{gpio_number}" in line:
+                    return chip
+
+        print(f"GPIO {gpio_number} not found in any gpiochip.")
         return None
 
-    except subprocess.CalledProcessError:
+    except subprocess.CalledProcessError as e:
+        print("Error executing gpioinfo:", e)
         return None
 
 gpiochip = find_gpiochip_for_gpio(TARGET_GPIO)
@@ -37,18 +51,21 @@ if gpiochip is None:
 
 h = lgpio.gpiochip_open(int(gpiochip))
 
-def get_temp():
-    with open('/sys/class/thermal/thermal_zone0/temp') as f:
-        temp_str = f.read()
-    return int(temp_str) / 1000
-
-def set_fan_speed(speed):
-    if speed <= 0:
-        lgpio.tx_pwm(h, TARGET_GPIO, PWM_FREQUENCY, 0)
-    else:
-        lgpio.tx_pwm(h, TARGET_GPIO, PWM_FREQUENCY, min(speed * 100, 100))
-
 try:
+    lgpio.gpio_claim_output(h, TARGET_GPIO)
+
+    def get_temp():
+        with open('/sys/class/thermal/thermal_zone0/temp') as f:
+            temp_str = f.read()
+        return int(temp_str) / 1000
+
+    def set_fan_speed(speed):
+        print(speed)
+        if speed <= 0:
+            lgpio.tx_pwm(h, TARGET_GPIO, PWM_FREQUENCY, 0)
+        else:
+            lgpio.tx_pwm(h, TARGET_GPIO, PWM_FREQUENCY, min(speed, 1)  * 100)
+
     temperatures = []
 
     while True:
